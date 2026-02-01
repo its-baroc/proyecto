@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Regent Hotel | Dining Menu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f5f3f0;
+            color: #333;
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.5;
+            padding: 30px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .menu-container {
+            width: 100%;
+            max-width: 800px;
+            background-color: #fff;
+            padding: 40px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+            border: 1px solid #e0e0e0;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 35px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #d4b996;
+        }
+
+        .hotel-name {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #2a2a2a;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .restaurant-name {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.6rem;
+            font-style: italic;
+            color: #5a5a5a;
+            margin-bottom: 15px;
+        }
+
+        .menu-intro {
+            font-size: 1.05rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .menu-section {
+            margin-bottom: 35px;
+        }
+
+        .section-title {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #2a2a2a;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #d4b996;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 60px;
+            height: 1px;
+            background-color: #a88b6d;
+        }
+
+        .menu-item {
+            margin-bottom: 18px;
+            padding-left: 5px;
+        }
+
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+
+        .item-name {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #222;
+        }
+
+        .item-price {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #222;
+            min-width: 70px;
+            text-align: right;
+        }
+
+        .item-description {
+            font-size: 0.95rem;
+            color: #555;
+            margin-left: 5px;
+            padding-right: 10px;
+        }
+
+        .item-details {
+            display: flex;
+            font-size: 0.85rem;
+            color: #777;
+            margin-top: 3px;
+            margin-left: 5px;
+        }
+
+        .dietary-info {
+            margin-right: 12px;
+        }
+
+        .leaders {
+            display: flex;
+            justify-content: space-between;
+            overflow: hidden;
+            margin: 0 5px;
+        }
+
+        .leaders::before,
+        .leaders::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px dotted #aaa;
+            margin: auto 10px;
+        }
+
+        .special-note {
+            background-color: #f9f7f5;
+            padding: 15px;
+            border-left: 3px solid #d4b996;
+            margin: 25px 0;
+            font-size: 0.95rem;
+            color: #555;
+            border-radius: 0 4px 4px 0;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 2px solid #d4b996;
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .hours {
+            font-weight: 600;
+            color: #2a2a2a;
+            margin: 8px 0;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.95rem;
+        }
+
+        .divider {
+            height: 1px;
+            background-color: #e8e8e8;
+            margin: 30px 0;
+        }
+
+        @media (max-width: 600px) {
+            .menu-container {
+                padding: 30px 25px;
+            }
+            
+            .hotel-name {
+                font-size: 2rem;
+            }
+            
+            .restaurant-name {
+                font-size: 1.4rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .item-name,
+            .item-price {
+                font-size: 1.15rem;
+            }
+            
+            .item-description {
+                font-size: 0.9rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 6px;
+            }
+            
+            .item-row {
+                flex-direction: column;
+            }
+            
+            .item-price {
+                text-align: left;
+                margin-top: 3px;
+            }
+            
+            .leaders::before,
+            .leaders::after {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-container">
+        <header>
+            <h1 class="hotel-name">THE REGENT HOTEL</h1>
+            <h2 class="restaurant-name">The Garden Terrace Restaurant</h2>
+            <p class="menu-intro">Featuring locally sourced ingredients and seasonal specialties prepared by our Executive Chef</p>
+        </header>
+
+        <section class="menu-section">
+            <h2 class="section-title">Appetizers</h2>
+            
+            <div class="menu-item">
+                <div class="item-row">
+                    <div class="item-name">Caesar Salad</div>
+                    <div class="leaders"></div>
+                    <div class="item-price">$14</div>
+                </div>
+                <div class="item-description">Romaine lettuce, house-made croutons, shaved parmesan, classic Caesar dressing</div>
+                <div class="item-details">
+                    <span class="dietary-info">Add grilled chicken $8</span>
+                    <span class="dietary-info">• Gluten-free option available</span>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-row">
+                    <div class="item-name">French Onion Soup</div>
+                    <div class="leaders"></div>
+                    <div class="item-price">$13</div>
+                </div>
+                <div class="item-description">Slow-simmered beef broth, caramelized onions, topped with gruyère cheese and croutons</div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-row">
+                    <div class="item-name">Crab Cakes</div>
+                    <div class="leaders"></div>
+                    <div class="item-price">$19</div>
+                </div>
+                <div class="item-description">Lump crab meat, minimal filler, served with remoulade sauce and microgreens</div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-row">
+                    <div class="item-name">Artisanal Cheese Board</div>
+                    <div class="leaders"></div>
+                    <div class="item-price">$24</div>
+                </div>
+                <div class="item-description">Selection of three fine cheeses, seasonal fruit, honeycomb, and assorted crackers</div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section class="menu-section">
+            <h2 class="section-title">Main Courses</h2>
+            
+            <div class="menu-item">
+                <div class="item-row">
+                    <div class="item-name">Grilled Atlantic Salmon</div>
+                    <div class="leaders"></div>
+                    <div class="item-price">$32</div>
+                </div>
+                <div class="item-description">Wild-caught salmon fillet, lemon-dill sauce, roasted asparagus, herb roasted potatoes</div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-row">
+                    <div class="item-name">Filet Mignon (8 oz)</div>
+                    <div class="leaders"></div>
+                    <div class="item-price">$46</div>
+                </div>
+                <div class="item-description">Center-cut beef tenderloin, red wine reduction, garlic mashed potatoes, seasonal vegetables</div>
+                <div class="item-details">
+                    <span class="dietary-info">Add truffle butter $5</span>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-row">
+                    <div class="item-name">Free-Range Chicken Breast</div>
+                    <div class="leaders"></div>
+                    <div class="item-price">$28</div>
+                </div>
+                <div class="item-description">Herb-roasted chicken, mushroom pan sauce, wild rice pilaf, haricots verts</div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-row">
+                    <div class="item-name">Mushroom Risotto</div>
+                    <div class="leaders"></div>
+                    <div class="item-price">$26</div>
+                </div>
+                <div class="item-description">Arborio rice, wild mushrooms, white wine, shallots, finished with parmesan and truffle oil</div>
+                <div class="item-details">
+                    <span class="dietary-info">Vegetarian • Vegan option available</span>
+                </div>
+            </div>
+            
+            <div class="special-note">
+                <i class="fas fa-info-circle" style="margin-right: 8px; color: #a88b6d;"></i>
+                All entrées include your choice of soup or garden salad. Please inform your server of any food allergies.
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section class="menu-section">
+            <h2 class="section-title">Desserts</h2>
+            
+            <div class="menu-item">
+                <div class="item-row">
+                    <div class="item-name">New York Cheesecake</div>
+                    <div class="leaders"></div>
+                    <div class="item-price">$12</div>
+                </div>
+                <div class="item-description">Classic creamy cheesecake with graham cracker crust, topped with seasonal berry compote</div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-row">
+                    <div class="item-name">Flourless Chocolate Cake</div>
+                    <div class="leaders"></div>
+                    <div class="item-price">$13</div>
+                </div>
+                <div class="item-description">Rich dark chocolate cake, raspberry coulis, vanilla bean ice cream</div>
+                <div class="item-details">
+                    <span class="dietary-info">Gluten-free</span>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-row">
+                    <div class="item-name">Crème Brûlée</div>
+                    <div class="leaders"></div>
+                    <div class="item-price">$11</div>
+                </div>
+                <div class="item-description">Classic vanilla bean custard with caramelized sugar crust</div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-row">
+                    <div class="item-name">Seasonal Fruit Tart</div>
+                    <div class="leaders"></div>
+                    <div class="item-price">$12</div>
+                </div>
+                <div class="item-description">Butter pastry shell filled with vanilla pastry cream and topped with fresh seasonal fruits</div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section class="menu-section">
+            <h2 class="section-title">Beverages</h2>
+            
+            <div class="menu-item">
+                <div class="item-row">
+                    <div class="item-name">Freshly Brewed Coffee</div>
+                    <div class="leaders"></div>
+                    <div class="item-price">$4</div>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-row">
+                    <div class="item-name">Artisanal Tea Selection</div>
+                    <div class="leaders"></div>
+                    <div class="item-price">$5</div>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-row">
+                    <div class="item-name">Sparkling Water (500ml)</div>
+                    <div class="leaders"></div>
+                    <div class="item-price">$6</div>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-row">
+                    <div class="item-name">House Wine (Glass)</div>
+                    <div class="leaders"></div>
+                    <div class="item-price">$12</div>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-row">
+                    <div class="item-name">Premium Wine (Glass)</div>
+                    <div class="leaders"></div>
+                    <div class="item-price">$16</div>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-row">
+                    <div class="item-name">Full Wine List Available Upon Request</div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>The Garden Terrace Restaurant</p>
+            <p class="hours">Breakfast: 7:00 AM – 10:30 AM • Lunch: 11:30 AM – 2:30 PM • Dinner: 5:30 PM – 10:00 PM</p>
+            <p>Daily Brunch: 10:00 AM – 2:00 PM (Saturday & Sunday)</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>225 Park Avenue, New York, NY 10017</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>(212) 555-0188</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-globe"></i>
+                    <span>theregenthotel.com/dining</span>
+                </div>
+            </div>
+            <p style="margin-top: 15px; font-style: italic; color: #777;">A 20% gratuity will be added for parties of 6 or more</p>
+        </footer>
+    </div>
+</body>
+</html>
