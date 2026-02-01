@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baroc Hotel | Dining Menu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f8f5f2;
+            color: #333;
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.5;
+            padding: 30px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: linear-gradient(to bottom, #f8f5f2 0%, #e9e1d1 100%);
+        }
+
+        .menu-container {
+            width: 100%;
+            max-width: 800px;
+            background-color: #fff;
+            padding: 45px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+            border: 1px solid #e0d6c9;
+            position: relative;
+        }
+        
+        /* Ethiopian-inspired accent border */
+        .menu-container::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border: 1px solid #d4b996;
+            pointer-events: none;
+        }
+        
+        .menu-container::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 1px solid #c8a985;
+            pointer-events: none;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 35px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #d4b996;
+            position: relative;
+        }
+        
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background-color: #a88b6d;
+        }
+
+        .hotel-name {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: #2a1b0a;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .restaurant-name {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.7rem;
+            font-style: italic;
+            color: #5a4a35;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .menu-intro {
+            font-size: 1.05rem;
+            color: #5a4a35;
+            max-width: 650px;
+            margin: 15px auto 0;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+        
+        .ethiopian-note {
+            background-color: #f9f4e9;
+            border-left: 3px solid #c8a985;
+            padding: 12px 15px;
+            margin: 15px auto 0;
+            max-width: 600px;
+            font-size: 0.95rem;
+            color: #6b5536;
+            border-radius: 0 4px 4px 0;
+            font-style: italic;
+        }
+
+        .menu-section {
+            margin-bottom: 35px;
+        }
+
+        .section-title {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2a1b0a;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            position: relative;
+            letter-spacing: 0.5px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 70px;
+            height: 2px;
+            background-color: #a88b6d;
+        }
+
+        .menu-item {
+            margin-bottom: 20px;
+            padding-left: 5px;
+            position: relative;
+        }
+        
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 4px;
+            height: 4px;
+            background-color: #d4b996;
+            border-radius: 50%;
+        }
+
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+            flex-wrap: wrap;
+        }
+
+        .item-name {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #222;
+            max-width: 85%;
+        }
+
+        .item-price {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #8b6f47;
+            min-width: 85px;
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        .item-description {
+            font-size: 0.98rem;
+            color: #5a4a35;
+            margin-left: 12px;
+            padding-right: 15px;
+            margin-top: 5px;
+            line-height: 1.5;
+        }
+
+        .item-details {
+            display: flex;
+            font-size: 0.88rem;
+            color: #7a654d;
+            margin-top: 4px;
+            margin-left: 12px;
+            flex-wrap: wrap;
+        }
+
+        .dietary-info {
+            margin-right: 15px;
+            display: inline-block;
+            margin-bottom: 3px;
+        }
+        
+        .dietary-info::before {
+            content: "• ";
+            color: #d4b996;
+        }
+
+        .leaders {
+            display: flex;
+            justify-content: space-between;
+            overflow: hidden;
+            margin: 0 5px;
+            flex-grow: 1;
+            align-self: center;
+            min-width: 30px;
+            margin: 0 10px;
+        }
+
+        .leaders::before {
+            content: '';
+            flex: 1;
+            border-bottom: 1px dotted #b8a58a;
+            margin: auto 5px;
+        }
+        
+        .special-note {
+            background-color: #f9f4e9;
+            padding: 16px;
+            border-left: 3px solid #c8a985;
+            margin: 28px 0;
+            font-size: 0.98rem;
+            color: #5a4a35;
+            border-radius: 0 4px 4px 0;
+            position: relative;
+            line-height: 1.5;
+        }
+        
+        .special-note::before {
+            content: '\f06a';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: -10px;
+            top: -10px;
+            background-color: #e9e1d1;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: #8b6f47;
+            border: 2px solid #c8a985;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 2px solid #d4b996;
+            color: #5a4a35;
+            font-size: 0.98rem;
+            line-height: 1.6;
+        }
+
+        .hours {
+            font-weight: 600;
+            color: #2a1b0a;
+            margin: 10px 0;
+            font-size: 1.05rem;
+        }
+        
+        .hours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 8px;
+            margin: 12px 0;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+            padding: 0 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.98rem;
+            min-width: 220px;
+            justify-content: center;
+        }
+        
+        .contact-item i {
+            color: #8b6f47;
+            font-size: 1.1rem;
+        }
+        
+        .divider {
+            height: 1px;
+            background-color: #e8e0d5;
+            margin: 35px 0;
+            border: none;
+        }
+        
+        .ethiopian-accent {
+            text-align: center;
+            margin: 25px 0;
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+            color: #7a654d;
+            font-size: 1.1rem;
+            position: relative;
+            padding: 0 20px;
+        }
+        
+        .ethiopian-accent::before,
+        .ethiopian-accent::after {
+            content: "✧";
+            margin: 0 10px;
+            color: #d4b996;
+        }
+
+        @media (max-width: 600px) {
+            .menu-container {
+                padding: 30px 25px;
+                margin: 10px;
+            }
+            
+            .hotel-name {
+                font-size: 2.1rem;
+                letter-spacing: 1px;
+            }
+            
+            .restaurant-name {
+                font-size: 1.45rem;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .item-name,
+            .item-price {
+                font-size: 1.2rem;
+            }
+            
+            .item-description {
+                font-size: 0.95rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 8px;
+                align-items: center;
+            }
+            
+            .contact-item {
+                min-width: auto;
+                justify-content: flex-start;
+                width: 100%;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            
+            .item-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .item-price {
+                text-align: left;
+                margin-top: 4px;
+                width: 100%;
+                padding-left: 12px;
+            }
+            
+            .leaders {
+                display: none;
+            }
+            
+            .menu-item::before {
+                top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-container">
+        <header>
+            <h1 class="hotel-name">BAROC HOTEL</h1>
+            <h2 class="restaurant-name">The Highland Terrace</h2>
+            <p class="menu-intro">Featuring the finest Ethiopian and international cuisine prepared with locally sourced ingredients and traditional hospitality</p>
+            <p class="ethiopian-note">All dishes prepared with the highest quality ingredients. Please inform our staff of any dietary restrictions or allergies.</p>
+        </header>
+
+        <section class="menu-section">
+            <h2 class="section-title">Appetizers</h2>
+            
+            <div class="menu-item">
+                <div class="item-row">
+                    <div class="item-name">Ethiopian Lentil Sambusa</div>
+                    <div class="leaders"></div>
+                    <div class="item-price">180 Br</div>
+                </div>
+                <div class="item-description">Crispy pastry filled with spiced lentils and herbs, served with beetroot dip</div>
+                <div class="item-details">
+                    <span class="dietary-info">Vegetarian</span>
+                    <span class="dietary-info">Vegan option available</span>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-row">
+                    <div class="item-name">Beef Kitfo</div>
+                    <div class="leaders"></div>
+                    <div class="item-price">320 Br</div>
+                </div>
+                <div class="item-description">Traditionally minced beef seasoned with mitmita and niter kibbeh, served with ayib cheese and injera</div>
+                <div class="item-details">
+                    <span class="dietary-info">Authentic preparation served warm</span>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-row">
+                    <div class="item-name">Mushroom Tibs</div>
+                    <div class="leaders"></div>
+                    <div class="item-price">260 Br</div>
+                </div>
+                <div class="item-description">Sautéed mushrooms with rosemary, garlic, and onions, served with traditional bread</div>
+                <div class="item-details">
+                    <span class="dietary-info">Vegetarian</span>
+                    <span class="dietary-info">Gluten-free option</span>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-row">
+                    <div class="item-name">Avocado & Tomato Salad</div>
+                    <div class="leaders"></div>
+                    <div class="item-price">220 Br</div>
+                </div>
+                <div class="item-description">Fresh avocado, heirloom tomatoes, red onion, and herbs with lemon-tahini dressing</div>
+                <div class="item-details">
+                    <span class="dietary-info">Vegan</span>
+                    <span class="dietary-info">Gluten-free</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section class="menu-section">
+            <h2 class="section-title">Main Courses</h2>
+            
+            <div class="menu-item">
+                <div class="item-row">
+                    <div class="item-name">Doro Wat</div>
+                    <div class="leaders"></div>
+                    <div class="item-price">420 Br</div>
+                </div>
+                <div class="item-description">Ethiopia's national dish: tender chicken stewed in berbere sauce with hard-boiled eggs, served with injera</div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-row">
+                    <div class="item-name">Grilled Tilapia</div>
+                    <div class="leaders"></div>
+                    <div class="item-price">480 Br</div>
+                </div>
+                <div class="item-description">Lake Tana tilapia grilled with local spices, served with awaze sauce, roasted vegetables, and injera</div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-row">
+                    <div class="item-name">Vegetarian Combo Platter</div>
+                    <div class="leaders"></div>
+                    <div class="item-price">380 Br</div>
+                </div>
+                <div class="item-description">Assortment of seasonal vegetables and legumes prepared in traditional Ethiopian style, served on a bed of injera</div>
+                <div class="item-details">
+                    <span class="dietary-info">Vegan</span>
+                    <span class="dietary-info">Gluten-free injera available</span>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-row">
+                    <div class="item-name">Beef Tibs</div>
+                    <div class="leaders"></div>
+                    <div class="item-price">450 Br</div>
+                </div>
+                <div class="item-description">Sautéed beef cubes with rosemary, garlic, and onions in niter kibbeh, served with injera and house salad</div>
+            </div>
+            
+            <div class="special-note">
+                All main courses are served with traditional injera bread. Additional injera available for 60 Br per piece. 
+                Please allow 25-30 minutes for traditional stews as they are prepared fresh to order.
+            </div>
+        </section>
+
+        <div class="ethiopian-accent">Authentic Ethiopian Hospitality</div>
+
+        <section class="menu-section">
+            <h2 class="section-title">Desserts</h2>
+            
+            <div class="menu-item">
+                <div class="item-row">
+                    <div class="item-name">Coffee Bunna</div>
+                    <div class="leaders"></div>
+                    <div class="item-price">150 Br</div>
+                </div>
+                <div class="item-description">Traditional Ethiopian coffee ceremony experience with freshly roasted beans, served with popcorn and incense</div>
+                <div class="item-details">
+                    <span class="dietary-info">Serves two guests</span>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-row">
+                    <div class="item-name">Honey Bread (Defo Dabo)</div>
+                    <div class="leaders"></div>
+                    <div class="item-price">130 Br</div>
+                </div>
+                <div class="item-description">Warm spiced honey bread with tej (honey wine) reduction and vanilla ice cream</div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-row">
+                    <div class="item-name">Tiramisu</div>
+                    <div class="leaders"></div>
+                    <div class="item-price">160 Br</div>
+                </div>
+                <div class="item-description">Ethiopian coffee-infused tiramisu with local honey and spiced chocolate shavings</div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-row">
+                    <div class="item-name">Fresh Fruit Platter</div>
+                    <div class="leaders"></div>
+                    <div class="item-price">140 Br</div>
+                </div>
+                <div class="item-description">Seasonal Ethiopian fruits including mango, papaya, banana, and avocado with honey-lime dressing</div>
+                <div class="item-details">
+                    <span class="dietary-info">Vegan</span>
+                    <span class="dietary-info">Gluten-free</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section class="menu-section">
+            <h2 class="section-title">Beverages</h2>
+            
+            <div class="menu-item">
+                <div class="item-row">
+                    <div class="item-name">Traditional Ethiopian Coffee</div>
+                    <div class="leaders"></div>
+                    <div class="item-price">90 Br</div>
+                </div>
+                <div class="item-description">Freshly brewed coffee from Yirgacheffe beans, served with traditional ceremony</div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-row">
+                    <div class="item-name">Tej (Honey Wine)</div>
+                    <div class="leaders"></div>
+                    <div class="item-price">170 Br</div>
+                </div>
+                <div class="item-description">Traditional Ethiopian honey wine, mildly sweet and fermented</div>
+                <div class="item-details">
+                    <span class="dietary-info">Contains alcohol</span>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-row">
+                    <div class="item-name">Fresh Sugarcane Juice</div>
+                    <div class="leaders"></div>
+                    <div class="item-price">110 Br</div>
+                </div>
+                <div class="item-description">Freshly pressed sugarcane juice with lime and mint</div>
+                <div class="item-details">
+                    <span class="dietary-info">Vegan</span>
+                    <span class="dietary-info">Gluten-free</span>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-row">
+                    <div class="item-name">Bottled Water (500ml)</div>
+                    <div class="leaders"></div>
+                    <div class="item-price">60 Br</div>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-row">
+                    <div class="item-name">Ethiopian Beer Selection</div>
+                    <div class="leaders"></div>
+                    <div class="item-price">120 Br</div>
+                </div>
+                <div class="item-description">St. George, Habesha, or Bedele beer</div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="item-row">
+                    <div class="item-name">Premium Wine Selection</div>
+                    <div class="leaders"></div>
+                    <div class="item-price">220-450 Br</div>
+                </div>
+                <div class="item-description">Curated selection of international and Ethiopian wines. Full wine list available upon request.</div>
+            </div>
+        </section>
+
+        <footer>
+            <p>The Highland Terrace Restaurant at Baroc Hotel</p>
+            <div class="hours-grid">
+                <div>Breakfast: 6:30 AM – 10:30 AM</div>
+                <div>Lunch: 12:00 PM – 3:00 PM</div>
+                <div>Dinner: 6:00 PM – 10:30 PM</div>
+                <div>Coffee Ceremony: 3:00 PM – 5:00 PM</div>
+            </div>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Bole Road, Addis Ababa, Ethiopia</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+251 11 555 0188</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-globe"></i>
+                    <span>barochotel.com/dining</span>
+                </div>
+            </div>
+            <p style="margin-top: 18px; font-style: italic; color: #7a654d;">
+                A 15% service charge will be added to all bills. Prices include VAT. 
+                <br>We proudly support local Ethiopian farmers and producers.
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
